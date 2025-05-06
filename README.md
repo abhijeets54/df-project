@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Digital Evidence Metadata Viewer
+
+A client-side digital forensics tool for securely analyzing files, extracting metadata, generating cryptographic hashes, and creating forensic reports - all without sending any data to a server.
+
+## Features
+
+- **Secure Client-Side Processing**: All file analysis is performed entirely in the browser; no data is ever uploaded to a server
+- **User Authentication**: Secure login with [Clerk](https://clerk.com/)
+- **File Analysis**:
+  - Metadata extraction for images, documents, and other file types
+  - Cryptographic hash generation (MD5, SHA-256)
+  - File signature verification
+- **Case Management**: Create cases and organize multiple analyses
+- **Report Generation**: Generate professional PDF reports for analyses or cases
+- **Local Storage**: Analysis results stored securely in your browser using IndexedDB
+
+## Technology Stack
+
+- **Frontend**: Next.js 14 with App Router
+- **Authentication**: Clerk
+- **UI**: TailwindCSS
+- **File Processing**:
+  - Web Crypto API for hash generation
+  - ExifReader for image metadata extraction
+  - jsPDF for report generation
+- **Data Storage**: IndexedDB for client-side data persistence
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 16.8.0 or later
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/df-evidence-viewer.git
+cd df-evidence-viewer
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a `.env.local` file at the root of your project with your Clerk API keys:
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your-key
+CLERK_SECRET_KEY=sk_test_your-key
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Start the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+The application will be available at http://localhost:3000.
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Sign In/Sign Up**: Create an account or sign in using Clerk authentication
+2. **Upload Files**: Select a file to analyze on the Upload page
+3. **View Analysis**: See detailed metadata, cryptographic hashes, and file integrity verification
+4. **Create Cases**: Organize related files into cases
+5. **Generate Reports**: Create professional PDF reports of your findings
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Privacy and Security
 
-## Deploy on Vercel
+This application processes all files locally in your browser. At no point is your data sent to any external servers:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Files are analyzed using client-side JavaScript APIs
+- Metadata is extracted directly in the browser
+- Cryptographic hashes are generated using the Web Crypto API
+- All data is stored in your browser's IndexedDB
+- Reports are generated client-side using jsPDF
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [Next.js](https://nextjs.org/)
+- [Clerk](https://clerk.com/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [ExifReader](https://github.com/mattiasw/ExifReader)
+- [jsPDF](https://github.com/MrRio/jsPDF)

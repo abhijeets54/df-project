@@ -1,0 +1,48 @@
+/* Fix for icons being too big initially */
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Ensure icons maintain their size */
+.react-icons {
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Prevent size flicker on initial load */
+.react-icons svg, .react-icon {
+  height: 1em !important;
+  width: 1em !important;
+}
+
+/* Fix for SVG icons in buttons and interactive elements */
+button svg, a svg, .interactive-icon svg {
+  height: 1em !important;
+  width: 1em !important;
+  flex-shrink: 0;
+}
+
+/* Fix for loading spinners */
+.animate-spin {
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Ensure consistent sizing for all icon wrappers */
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+/* Fix for icons in specific components */
+.sidebar-icon svg,
+.dashboard-icon svg,
+.form-icon svg,
+.metadata-icon svg,
+.file-icon svg {
+  height: 1em !important;
+  width: 1em !important;
+}
